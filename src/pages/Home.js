@@ -33,10 +33,22 @@ function Home(props) {
     useEffect(()=>{
         axios.get("/api/board").then(response=>{
             console.log('board data');
+            setKeyword('');
             const data = response.data.data;
             setBoardData(data);
         });
     },[])
+
+    const search = () =>{
+        axios.get("/api/board",{
+            params:{
+                keyword:keyword
+            }
+        }).then(response=>{
+            const data = response.data.data;
+            setBoardData(data);
+        });
+      }
 
     return(
         <div>
@@ -46,7 +58,7 @@ function Home(props) {
                     setKeyword(e.target.value)} />
                 </div>
                 <div style={searchButtonDivStyle}>
-                    <Button size='large' variant="contained" onClick={()=> navigate("/insert")}>검색</Button>
+                    <Button size='large' variant="contained" onClick={search}>검색</Button>
                 </div>
             </div>
         <Table>

@@ -37,7 +37,7 @@ function Modify(props) {
             setTitle(data.title);
             contents = response.data.data.content;
             setCont(response.data.data.content);
-            returnToHome();
+            // returnToHome();
         });
     },[])
 
@@ -51,6 +51,7 @@ function Modify(props) {
         regDate:null
       }).then(response=>{
           console.log('complete')
+          returnToHome();
       });
     }
 
